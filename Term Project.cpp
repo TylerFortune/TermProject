@@ -13,13 +13,7 @@
 #include <stdlib.h>
 
 using namespace std;
-class customer {
 
-    public:
-
-       
-
-};
 // This function directly adds a new customer to the customer data file
 void addCustomer(string firstName, string lastName, string address, ifstream outfile) {
     string filename = "customers.cta"

@@ -1,5 +1,5 @@
 /*
-* This heasder class contains characteristics of a customer
+* This header class contains characteristics of a customer
 */
 using namespace std;
 #pragma once

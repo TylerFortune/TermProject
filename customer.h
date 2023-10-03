@@ -13,18 +13,38 @@ using namespace std;
 #include <stdlib.h>
 
 class customer {
-// Private vatiables that remain in thne class.
+// Private variables that remain in thne class.
 private:
 	string firstName;
 	string lastName;
 	string address;
+	int ID;
 
+	
 // Public functions that are called from main()
 public:
 	// Initializes the characteristics of the customer.
-	void addCustomer(string fname, string lname, string addy) {
-		firstName = fname;
-		lastName = lname;
-		address = addy;
+	customer(string fname, string lname, string addy, int id ) {
+		this->firstName = fname;
+		this->lastName = lname;	
+		this->address = addy;
+		this->ID = id;
 	}
+
+	// function to genterate and return customer ID
+	int getID(ifstream INFILE) {
+		// Read ID contents of file
+
+		// Loop to generate Random ID of 9 integers
+		// Compare ID to contents in file
+
+	}
+	// returns customer name
+	string getName() {
+		return firstName, ", ", lastName;
+	}
+	string getAddress() {
+		return address;
+	}
+
 };

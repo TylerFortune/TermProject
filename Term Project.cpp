@@ -48,8 +48,9 @@ int main()
 
             string token; // Token placeholder
             getline(iss, token, ";");
-            string ignore = token; // Save the first entry
+            string ignore = token; // Ignores the first entry
 
+            // Stores all characteristics of customer
             getline(iss, token, ';');
             Fname = atof(token.c_str());
 
@@ -68,8 +69,10 @@ int main()
             getline(iss, token, ';');
             zip = atof(token.c_str());
 
+            // Initalizes a new customer class object
             customer newcustomer = new customer(Fname, LName, address, city, state, zip);
 
+            // Pushes new customer to vector
             customers.push_back(newcustomer);
         }
     }
@@ -80,9 +83,9 @@ int main()
 
     // Uncomment code to read customers vector
 
-    for (int i = 0; i < customers.size(); i++) {
-        cout << customers[i] << "\n";
-    }
+    //for (int i = 0; i < customers.size(); i++) {
+    //    cout << customers[i] << "\n";
+    //}
    
 
     // This Program is a Menu driven with UI console display

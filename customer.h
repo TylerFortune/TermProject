@@ -18,16 +18,30 @@ private:
 	string firstName;
 	string lastName;
 	string address;
+	string city;
+	string state;
+	string zip;
 	int ID;
 
 	
 // Public functions that are called from main()
 public:
 	// Initializes the characteristics of the customer.
-	customer(string fname, string lname, string addy, int id ) {
+	customer(string fname, string lname, string addy, string city, string state, string zip) {
+		this->firstName = fname;
+		this->lastName = lname;
+		this->address = addy;
+		this->city = city;
+		this->state = state;
+		this->zip = zip;
+	}
+	customer(string fname, string lname, string addy, string city, string state, string zip, int id) {
 		this->firstName = fname;
 		this->lastName = lname;	
 		this->address = addy;
+		this->city = city;
+		this->state = state;
+		this->zip = zip;
 		this->ID = id;
 	}
 
@@ -39,12 +53,24 @@ public:
 		// Compare ID to contents in file
 
 	}
-	// returns customer name
+	// returns customer characteristics
 	string getName() {
-		return firstName, ", ", lastName;
+		return this->firstName, ", ", this->lastName;
 	}
 	string getAddress() {
-		return address;
+		return this->address;
+	}
+	string getCity() {
+		return this->city;
+	}
+	string getState() {
+		return this->state;
+	}
+	string getZip() {
+		return this->zip;
+	}
+	int getID() {
+		return this->ID;
 	}
 
 };

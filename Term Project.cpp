@@ -4,6 +4,7 @@
 // Due: 9/19/23
 
 #include <iostream>
+#include <vector>
 #include <string>
 #include <fstream>
 #include <cstring>
@@ -11,17 +12,15 @@
 #include <cstdio>
 #include <stdio.h>
 #include <stdlib.h>
-#include "customer.h"   // Includes calls from customer object
-#include "transaction.h" // Includes calls from transaction objectr 
+#include <sstream>
+#include "customer.h"   // Includes calls from customer object class
+#include "transaction.h" // Includes calls from transaction object class
+#include "orders.h" // Includes calls from orders object class
 
 using namespace std;
 //------------Call Functions-------------
-// This function directly adds a new customer to the customer data file
-void addCustomer(string firstName, string lastName, string address, ifstream outfile) {
-    string filename = "customers.cta"
-    // Open file for use
-    outfile.open()
-}
+
+
 
 //------------Main Function-------------
 int main()
@@ -40,11 +39,12 @@ int main()
 
 
     // Customer data file is opened
-    CFile.open(CFilename);
+    CFile.open(CFileName);
     if (CFile.is_open()) {
         while (getline(CFile, content)) {
+            string tempString = content;
             // Create an input stream
-            ifstringstream iss(content);
+            ifstringstream iss(tempString);
 
             string token; // Token placeholder
             getline(iss, token, ";");

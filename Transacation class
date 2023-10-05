@@ -1,0 +1,28 @@
+using namespace std;
+#pragma once
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
+#include <stdio.h>
+#include <stdlib.h>
+class Transactions
+{
+  private:
+      int OrderId
+      int CostumerId;
+  public:
+    transaction(int oID, int cID){
+        this-> OrderId=oId;
+        this-> CostumerId=cId;
+    }
+      
+  int getcostumerID(ifstream INFILE) {
+      return this-> OrderId;
+  }
+  int getOrderId(ifstream INFILE){
+      return this-> CostumerId;
+  }
+};

@@ -72,5 +72,8 @@ public:
 	int getID() {
 		return this->ID;
 	}
+	void setID(int id) {
+		this->ID = id;
+	}
 
 };

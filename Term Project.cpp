@@ -33,7 +33,8 @@ int main()
     string TFileName = "transactions.txt"; // Transaction filename
 
     // Identifiers of a customer
-    string FName, LName, address, city, state, zip, ID;
+    string FName, LName, address, city, state, zip;
+    int ID;
 
     vector<customer> customers; // Vector that stores customer objects
 
@@ -44,15 +45,15 @@ int main()
         while (getline(CFile, content)) {
             string tempString = content;
             // Create an input stream
-            ifstringstream iss(tempString);
+            istringstream iss(tempString);
 
             string token; // Token placeholder
-            getline(iss, token, ";");
-            string ignore = token; // Ignores the first entry
+            getline(iss, token, ';');
+            ID = stoi(token); // Ignores the first entry
 
             // Stores all characteristics of customer
             getline(iss, token, ';');
-            Fname = atof(token.c_str());
+            FName = atof(token.c_str());
 
             getline(iss, token, ';');
             LName = atof(token.c_str());
@@ -70,7 +71,7 @@ int main()
             zip = atof(token.c_str());
 
             // Initalizes a new customer class object
-            customer newcustomer = new customer(Fname, LName, address, city, state, zip);
+            customer newcustomer(FName, LName, address, city, state, zip, ID);
 
             // Pushes new customer to vector
             customers.push_back(newcustomer);
@@ -83,9 +84,9 @@ int main()
 
     // Uncomment code to read customers vector
 
-    //for (int i = 0; i < customers.size(); i++) {
-    //    cout << customers[i] << "\n";
-    //}
+    for (int i = 0; i < customers.size(); i++) {
+        cout << customers[i].getName() << "\n";
+    }
    
 
     // This Program is a Menu driven with UI console display

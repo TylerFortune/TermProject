@@ -1,0 +1,145 @@
+int main(){
+ ifstream CFile; // Customer file
+ ifstream Tfile; // Transaction file
+ ifstream Ofile; // Order File
+ string content; // Temp variable to store contents from files
+ string CFileName = "customers.txt"; // Customer filename
+ string TFileName = "transactions.txt"; // Transaction filename
+ string OFileName=  "orders.txt";
+
+ //Identifiers of a Costumer
+ string FName, LName, address, city, state, zip;
+ int ID;
+ //Identifiers for a Transaction
+ string costumerId, transactionId;
+ //Identifiers for an Order
+ string costumerId, Odate,
+ int quantity;
+ double price;
+
+ vector<customer> customers; // Vector that stores customer objects
+ vector<transaction> transaction; //Vector that stores transaction objects
+ vector<order> orders;//Vector that stores order objects
+    // Customer data file is opened
+    CFile.open(CFileName);
+    Tfile.open(TFileName);
+    Ofile.open(OFileName);
+    if (CFile.is_open() && Tfile.is_open() && Ofile.is_open()) {
+        while (getline(CFile, content)) {
+            string tempString = content;
+            // Create an input stream
+            istringstream iss(tempString);
+
+            string token; // Token placeholder
+            getline(iss, token, ';');
+            ID = stoi(token); // Ignores the first entry
+
+            // Stores all characteristics of customer
+            getline(iss, token, ';');
+            FName = atof(token.c_str());
+
+            getline(iss, token, ';');
+            LName = atof(token.c_str());
+
+            getline(iss, token, ';');
+            address = atof(token.c_str());
+
+            getline(iss, token, ';');
+            city = atof(token.c_str());
+
+            getline(iss, token, ';');
+            state = atof(token.c_str());
+
+            getline(iss, token, ';');
+            zip = atof(token.c_str());
+
+            // Initalizes a new customer class object
+            customer newcustomer(FName, LName, address, city, state, zip, ID);
+
+            // Pushes new customer to vector
+            customers.push_back(newcustomer);
+        }
+        while (getline(Tfile, content)){
+            tempString1= content;
+            isstringstream iss(tempString1);
+            string token;
+            getline(iss, token, ':');
+            string costumberID=token;
+            getline(iss, token, ':');
+            string transactionID=token;
+            transaction newtransaction(costumerID, transactionID);
+            transactions.push_back(newtransaction);
+
+        }
+        while (getline(Ofile, content)){
+            tempString2=content;
+            isstringstream iss(tempString2);
+            string token;
+            getline(iss, token, ':');
+            string costumerID = token;
+            getline(iss, token, ':');
+            string ODate = token;
+            getline(iss, token, ';');
+            int quantity= stoi(token);
+            getline(iss, token, ':')
+            double price= stod(token);
+            order neworder(costumerID, Odate, quantity,price);
+            orders.push_back(neworder);
+
+        
+        }
+       CFile.close();
+       Tfile.close();
+       Ofile.close();
+    
+    }
+    else {
+        cout << "Error - cannot open " << endl;  // Program Error
+        return 1;
+    }
+
+    // Uncomment code to read customers vector
+    cout<< "Costumer Detail: "<< endl;
+    for (const Costumers& costumer : costumers) {
+        cout << costumer.FName<< " "<< costumer.LName<<" ; "<< costumer.adress<< " , " <<costumer.city<<" , "<<costumer.state<<" , "<<costumer.zip<<endl;
+    }
+    // Reading data from transaction vector
+    cout<< "\nTransaction Details: "<< endl;
+    for(const Transactions& transaction : transactions){
+        cout<< transaction.costumerID << " : " << transaction.transactionID <<endl;
+    }
+
+    //Reading Data from orders vector
+    cout<< "\nOrder Details"<<endl;
+    for (const Orders& order : orders){
+        cout<< order.CostumerID<<" ; "<<order.ODate<<" : "<< order.quantity<< " ; "<< order.price<<endl;
+    }
+
+//Creating an Ouput file 
+ofstream outputFile(costumerResults.txt);
+
+if (outputFile.is_open()){
+//Writting costumer details to the outout file  
+ outputFile<< "Costumer Details: "<<endl;
+    for (const Costumers& costumer : costumers) {
+     cout << costumer.FName<< " "<< costumer.LName<<" ; "<< costumer.adress<< " , " <<costumer.city<<" , "<<costumer.state<<" , "<<costumer.zip<<endl;
+ 
+    }
+// Writting Order detail to output file 
+outputFile<< "Order Details: "<<endl;
+    for (const Orders& order : orders){
+     cout<< order.CostumerID<<" ; "<<order.ODate<<" : "<< order.quantity<< " ; "<< order.price<<endl;
+    }
+//writting Transaction Details to output file
+outoutFile<< "Transaction Details: "<<endl;
+    for(const Transactions& transaction : transactions){
+        cout<< transaction.costumerID << " : " << transaction.transactionID <<endl;
+    }
+outputFile.close();
+cout<<" Data Uploaded Succesfully! "<<endl;
+}else{
+    cout<<"Error- cannot open file for output"<<endl;
+    return 1;
+}
+ return 0;
+}

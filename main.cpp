@@ -11,6 +11,10 @@
 #include "customers.h"
 #include "transaction.h"
 #include "orders.h"
+#include "salesperson.h"
+#include "superSales.h"
+#include "supervisor.h"
+#include "manager.h"
 
 using namespace std;
 
@@ -33,32 +37,58 @@ bool idExists(int id, const vector<customer>& customers) {
     return false; // ID does not exist
 }
 
-// Function to check if a given ID already exists in the vector of salespeople
-/*
- * This will need to be initialized in main function where the ID will be generated with a unique employee ID
- */
-
-// Function to employees commission on a sale
-/* double solveCommission(vector salesperson, double amount)
- *
- * Ideas to expand this function:
- * do we need to create a new function for each type of sale?
-*/
-
-
-// Function that gets total commission for a managers reps
-
 
 // Main Function
 int main() {
     ifstream CFile("customers.txt"); // Customer file
     ifstream TFile("transactions.txt"); // Transaction file
     ifstream OFile("orders.txt"); // Orders file
+    ifstream SFile("salesSaff.txt"); // Sales Staff file
 
     vector<customer> customers; // Vector that stores customer objects
     vector<orders> orderList; // Vector that stores order objects
     vector<Transactions> transactionList; // Vector that stores transaction objects
+    vector<salesperson> salesperson; // Vector that stores salesperson objects
+    vector<superSales> superSales; // Vector that stores supersales objects
 
+
+    if (SFile.is_open()) {
+        string content;
+        while (getline(SFile, content)) {
+            string tempString = content;
+            istringstream iss(tempString);
+
+            string title, name;
+            int salesPersonID, bossID;
+
+            getline(iss, title, ';');
+            getline(iss, name, ';');
+            getline(iss, content, ';');
+            salesPersonID = stoi(content);
+            getline(iss, content, ';');
+            bossID = stoi(content);
+
+            salesperson newSalesPerson = nullptr;
+
+            if (title == "Sales") {
+                newSalesPerson = new Sales(name, salesPersonID, bossID);
+            } else if (title == "SuperSales") {
+                newSalesPerson = new SuperSales(name, salesPersonID, bossID);
+            } else if (title == "Supervisor") {
+                newSalesPerson = new Supervisor(name, salesPersonID, bossID);
+            } else if (title == "Manager") {
+                newSalesPerson = new Manager(name, salesPersonID, bossID);
+            }
+
+            if (newSalesPerson) {
+                salesStaff.push_back(newSalesPerson);
+            }
+        }
+        SFile.close();
+    } else {
+        cout << "Error - cannot open salesStaff.txt" << endl;
+        exit(1);
+    }
     // Reading customer data file
     if (CFile.is_open()) {
         string content;

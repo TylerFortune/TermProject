@@ -23,6 +23,8 @@ public:
     // Constructor with appropriate parameters
     superSales(string n, string p, int employeeID, int BID){
         this->EID = employeeID;
+        this->position = p;
+        this->name = n;
         this->bossID = BID;
         this->commission = 0.10;
     }

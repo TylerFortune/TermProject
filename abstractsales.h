@@ -50,11 +50,5 @@ public:
         return this->bossID;
     }
 
-    // Function to designate if a bossID matches
-//    bool checkBossID(int id){
-//        if (this->bossID == id){
-//            return true;
-//        }
-//        return false;
-//    }
+
 };

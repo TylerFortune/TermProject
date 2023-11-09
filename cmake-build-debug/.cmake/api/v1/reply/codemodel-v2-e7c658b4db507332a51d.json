@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/tyler/Desktop/Term Project-CSCE306/Test-Term-Project/cmake-build-debug",
-		"source" : "C:/Users/tyler/Desktop/Term Project-CSCE306/Test-Term-Project"
+		"build" : "C:/Users/tyler/OneDrive/Desktop/Test-Term-Project/TermProject/cmake-build-debug",
+		"source" : "C:/Users/tyler/OneDrive/Desktop/Test-Term-Project/TermProject"
 	},
 	"version" : 
 	{

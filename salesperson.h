@@ -10,6 +10,7 @@ using namespace std;
 class salesperson : abstractsales{
 private:
     double commission = 0.05;
+    double totalSalesProfit;
 public:
     // Default Constructor
     salesperson(){
@@ -32,7 +33,14 @@ public:
     double getCommission(){
         return this->commission;
     }
-    double getTotalProfit(double total){
-        return total * this->commission;
+    double getTotalProfit(){
+        return totalSalesProfit;
     }
+
+    // Function to add sale to total amount
+    void addSale(double amt){
+        totalSalesProfit += amt * commission;
+    }
+
+
 };

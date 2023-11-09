@@ -9,14 +9,34 @@
 
 #endif //TEST_TERM_PROJECT_MANAGER_H
 #include <string>
+#include <vector>
+
 using namespace std;
 class manager : abstractsales{
 private:
-    string bossID;
+    double totalSalesProfit;
     double commission;
 public:
-    /*
-     * This function allows for a vector of sales people to be passed as a parameter
-     *
-     */
+    // Default constructor
+    manager(){
+        commission = .065;
+    }
+    manager(string n, string p, int EID, int bossID){
+        this->name = n;
+        this->position = p;
+        this->EID =EID;
+        this->bossID = bossID; // In this stage of the program, manager has no one above them. Placeholder value.
+    }
+    // Function that sets total commission
+    double totalCommission(double belowCommission, double selfSales){
+        return belowCommission + selfSales;
+    }
+    //Function to make a sale
+    void makeSale(double amt){
+        totalSalesProfit += amt * commission;
+    }
+    // Function that adds a sales to totalSales profit
+    void addProfit(double amt){
+        totalSalesProfit = totalSalesProfit + amt;
+    }
 };

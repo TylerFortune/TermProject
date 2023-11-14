@@ -15,6 +15,7 @@
 #include "superSales.h"
 #include "supervisor.h"
 #include "manager.h"
+#include "abstractsales.h"
 
 using namespace std;
 
@@ -68,16 +69,16 @@ int main() {
             getline(iss, content, ';');
             bossID = stoi(content);
 
-            salesperson newSalesPerson = nullptr;
+            abstractsales newSalesPerson;
 
             if (title == "Sales") {
-                newSalesPerson = new Sales(name, salesPersonID, bossID);
+                newSalesPerson = new class salesperson(name, title,salesPersonID, bossID);
             } else if (title == "SuperSales") {
-                newSalesPerson = new SuperSales(name, salesPersonID, bossID);
+                newSalesPerson = new superSales(name, salesPersonID, bossID);
             } else if (title == "Supervisor") {
-                newSalesPerson = new Supervisor(name, salesPersonID, bossID);
+                newSalesPerson = new supervisor(name, salesPersonID, bossID);
             } else if (title == "Manager") {
-                newSalesPerson = new Manager(name, salesPersonID, bossID);
+                newSalesPerson = new manager(name, salesPersonID, bossID);
             }
 
             if (newSalesPerson) {

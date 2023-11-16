@@ -48,8 +48,9 @@ int main() {
     vector<customer> customers; // Vector that stores customer objects
     vector<orders> orderList; // Vector that stores order objects
     vector<Transactions> transactionList; // Vector that stores transaction objects
-    vector<salesperson> salesperson; // Vector that stores salesperson objects
-    vector<superSales> superSales; // Vector that stores supersales objects
+    vector<salesperson> salesPerson; // Vector that stores salesperson objects
+    vector<superSales> SuperSales; // Vector that stores supersales objects
+    vector<supervisor> Supervisor;
 
 
     if (SFile.is_open()) {
@@ -68,20 +69,17 @@ int main() {
             getline(iss, content, ';');
             bossID = stoi(content);
 
-            salesperson newSalesPerson = nullptr;
-
             if (title == "Sales") {
-                newSalesPerson = new Sales(name, salesPersonID, bossID);
+               salesperson newSales(title, name, salesPersonID, bossID);
+               salesPerson.push_back(newSales);
             } else if (title == "SuperSales") {
-                newSalesPerson = new SuperSales(name, salesPersonID, bossID);
+                superSales newSales(title, name, salesPersonID, bossID);
+                SuperSales.push_back(newSales);
             } else if (title == "Supervisor") {
-                newSalesPerson = new Supervisor(name, salesPersonID, bossID);
+                superSales newSales(title, name, salesPersonID, bossID);
+                SuperSales.push_back(newSales);
             } else if (title == "Manager") {
-                newSalesPerson = new Manager(name, salesPersonID, bossID);
-            }
 
-            if (newSalesPerson) {
-                salesStaff.push_back(newSalesPerson);
             }
         }
         SFile.close();

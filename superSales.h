@@ -10,18 +10,19 @@
 #include "abstractsales.h"
 using namespace std;
 
-class superSales : abstractsales{
+class superSales : public abstractsales{
 private:
     double commission = 0.10;
+    double totalSales = 0.00;
 public:
     // Default Constructor
     superSales(){
         this->EID = 0;
         this->bossID = 0;
-        this->commission = 0.10;
+        this->commission = 0.065;
     }
     // Constructor with appropriate parameters
-    superSales(string n, string p, int employeeID, int BID){
+    superSales(string p, string n, int employeeID, int BID){
         this->EID = employeeID;
         this->position = p;
         this->name = n;
@@ -36,4 +37,8 @@ public:
     double getTotalProfit(double total){
         return total * this->commission;
     }
+    void addSales(double amt){
+        totalSales += amt * this->commission;
+    }
+
 };

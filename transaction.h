@@ -10,11 +10,13 @@ class Transactions {
 private:
     int OrderId;
     int CustomerId;
+    int salesId;
 
 public:
-    Transactions(int oID, int cID) {
+    Transactions(int cID, int SID, int oID) {
         this->OrderId = oID;
         this->CustomerId = cID;
+        this->salesId = SID;
     }
 
     // Getter methods (unchanged)
@@ -25,6 +27,9 @@ public:
     int getOrderId() const {
         return this->OrderId;
     }
+    int getSalesId() const{
+        return this->salesId;
+    }
 
     // Setter methods
     void setCustomerId(int cID) {
@@ -34,4 +39,8 @@ public:
     void setOrderId(int oID) {
         this->OrderId = oID;
     }
+    void setSalesID(int sID){
+        this->salesId = sID;
+    }
+
 };

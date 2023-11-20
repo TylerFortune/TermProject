@@ -13,10 +13,11 @@
 
 using namespace std;
 
-class supervisor: abstractsales{
+class supervisor: public abstractsales{
 private:
     double commission = 0.065; // 6.5% commission for any sales made by supervisor
     double undersales = 0.03; // 3% commission for sales for employees under them
+    double totalSales = 0;
 public:
     //Default Constructor
     supervisor(){
@@ -28,14 +29,22 @@ public:
         this->undersales = 0.03;
     };
     // Main Constructor
-    supervisor(string n, string p, int EID, int BID){
+    supervisor(string p, string n, int EID, int BID){
         this->name = n;
         this->position = p;
         this->EID = EID;
         this->bossID = BID;
     }
 
-    // This function calculates the commission made from the sales
+    //====== GET FUNCTIONS ======
+    double getTotalSales(){
+        return this->totalSales;
+    }
+    void addSales(double amt){
+        totalSales += amt * this->commission;
+    }
+
+
 
 
 };

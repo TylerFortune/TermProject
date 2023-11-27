@@ -1,7 +1,6 @@
 #ifndef TEST_TERM_PROJECT_ABSTRACTSALES_H
 #define TEST_TERM_PROJECT_ABSTRACTSALES_H
 
-#endif //TEST_TERM_PROJECT_ABSTRACTSALES_H
 
 
 #include <string>
@@ -32,23 +31,22 @@ public:
     void setEID(int employeeID){
         this->EID = employeeID;
     }
-    void setBossID(int bossesID){
+    void setBossID(int bossesID) {
         this->bossID = bossesID;
     }
-
     // ===== Get Functions =====
-    string getName(){
+    string getName() const{
         return this->name;
     }
-    string getPosition(){
+    string getPosition() const{
         return this->position;
     }
-    int getEID(){
+    int getEID() const{
         return this->EID;
     }
-    int getBossID(){
+    int getBossID() const{
         return this->bossID;
     }
-
-
 };
+
+#endif //TEST_TERM_PROJECT_ABSTRACTSALES_H

@@ -12,31 +12,31 @@
 #include <vector>
 
 using namespace std;
-class manager : abstractsales{
+class manager : public abstractsales{
 private:
     double totalSalesProfit;
-    double commission;
+    double commission = 0.065;
+    double undercommission = 0.03;
 public:
     // Default constructor
     manager(){
         commission = .065;
+        this->undercommission = 0.03;
     }
-    manager(string n, string p, int EID, int bossID){
+    manager(string p, string n, int EID, int bossID){
         this->name = n;
         this->position = p;
         this->EID =EID;
         this->bossID = bossID; // In this stage of the program, manager has no one above them. Placeholder value.
+        commission = .065;
+        this->undercommission = 0.03;
     }
     // Function that sets total commission
     double totalCommission(double belowCommission, double selfSales){
         return belowCommission + selfSales;
     }
-    //Function to make a sale
-    void makeSale(double amt){
-        totalSalesProfit += amt * commission;
-    }
     // Function that adds a sales to totalSales profit
-    void addProfit(double amt){
-        totalSalesProfit = totalSalesProfit + amt;
+    void addSales(double amt){
+        totalSalesProfit += amt * commission;
     }
 };

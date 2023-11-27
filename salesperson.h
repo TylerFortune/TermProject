@@ -7,7 +7,7 @@
 #include "abstractsales.h"
 using namespace std;
 
-class salesperson : abstractsales{
+class salesperson : public abstractsales{
 private:
     double commission = 0.05;
     double totalSalesProfit;
@@ -22,8 +22,8 @@ public:
     }
     // Constructor with appropriate parameters
     salesperson(string n, string p, int employeeID, int BID){
-        this->name = n;
-        this->position = p;
+        this->name = p;
+        this->position = n;
         this->EID = employeeID;
         this->bossID = BID;
         this->commission = 0.05;
@@ -38,8 +38,8 @@ public:
     }
 
     // Function to add sale to total amount
-    void addSale(double amt){
-        totalSalesProfit += amt * commission;
+    void addSales(double amt){
+        totalSalesProfit += (amt * commission);
     }
 
 

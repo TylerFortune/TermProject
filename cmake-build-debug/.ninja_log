@@ -1,3 +1,16 @@
 # ninja log v5
 5	1145	7212129681555859	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	c061d60f44e30925
 1145	1562	7212129685698091	Test_Term_Project.exe	ecd876a89b0ab1b2
+5	1614	7221941305496584	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	ee9700e753f9f23a
+1616	1986	7221941309183373	Test_Term_Project.exe	ecd876a89b0ab1b2
+4	1136	7221941847627010	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	ee9700e753f9f23a
+1137	1307	7221941849332831	Test_Term_Project.exe	ecd876a89b0ab1b2
+5	1026	7221942464840974	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	ee9700e753f9f23a
+1027	1189	7221942466456850	Test_Term_Project.exe	ecd876a89b0ab1b2
+3	998	7221943948705921	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	ee9700e753f9f23a
+999	1172	7221943950416978	Test_Term_Project.exe	ecd876a89b0ab1b2
+4	1720	7222017670238059	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	ee9700e753f9f23a
+4	988	7222019244650469	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	ee9700e753f9f23a
+989	1153	7222019246283871	Test_Term_Project.exe	ecd876a89b0ab1b2
+4	992	7222020875845571	CMakeFiles/Test_Term_Project.dir/main.cpp.obj	ee9700e753f9f23a
+994	1168	7222020877575990	Test_Term_Project.exe	ecd876a89b0ab1b2

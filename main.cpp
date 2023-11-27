@@ -15,6 +15,7 @@
 #include "superSales.h"
 #include "supervisor.h"
 #include "manager.h"
+#include "abstractsales.h"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ void readTransactionHistory(const vector<Transactions>& transactionList);
 void getCustomerTransactionHistory(const vector<Transactions>& transactionList, int customerID);
 void addOrder(vector<orders>& orderList, vector<Transactions>& transactionList, const vector<customer>& customers);
 void updateOrder(vector<orders>& orderList);
+void readSalesperson(vector<salesperson>& salespersons);
+void getSalesRecord(vector<Transactions>& transactionList, vector<salesperson>& salesPerson, vector<superSales>& SuperSales, vector<supervisor>& Supervisor, vector<manager>& Manager, vector<orders>& orderList);
 
 // Function to check if a given ID already exists in the vector of customers
 bool idExists(int id, const vector<customer>& customers) {
@@ -43,14 +46,19 @@ int main() {
     ifstream CFile("customers.txt"); // Customer file
     ifstream TFile("transactions.txt"); // Transaction file
     ifstream OFile("orders.txt"); // Orders file
-    ifstream SFile("salesSaff.txt"); // Sales Staff file
+    ifstream SFile("salesStaff.txt"); // Sales Staff file
 
     vector<customer> customers; // Vector that stores customer objects
     vector<orders> orderList; // Vector that stores order objects
     vector<Transactions> transactionList; // Vector that stores transaction objects
     vector<salesperson> salesPerson; // Vector that stores salesperson objects
     vector<superSales> SuperSales; // Vector that stores supersales objects
+<<<<<<< HEAD
     vector<supervisor> Supervisor;
+=======
+    vector<manager> Manager; // Vector that stores manager objects
+    vector<supervisor> Supervisor; // Vector that stores supervisor objects
+>>>>>>> 737188fc369344b6d15dd684061e0ad14f7a7623
 
 
     if (SFile.is_open()) {
@@ -69,17 +77,33 @@ int main() {
             getline(iss, content, ';');
             bossID = stoi(content);
 
+<<<<<<< HEAD
             if (title == "Sales") {
                salesperson newSales(title, name, salesPersonID, bossID);
                salesPerson.push_back(newSales);
+=======
+            abstractsales newSalesPerson;
+
+            if (title == "Sales") {
+                salesperson newSales(title, name, salesPersonID, bossID);
+                salesPerson.push_back(newSales);
+>>>>>>> 737188fc369344b6d15dd684061e0ad14f7a7623
             } else if (title == "SuperSales") {
                 superSales newSales(title, name, salesPersonID, bossID);
                 SuperSales.push_back(newSales);
             } else if (title == "Supervisor") {
+<<<<<<< HEAD
                 superSales newSales(title, name, salesPersonID, bossID);
                 SuperSales.push_back(newSales);
             } else if (title == "Manager") {
 
+=======
+                supervisor newSales(title, name, salesPersonID, bossID);
+                Supervisor.push_back(newSales);
+            } else if (title == "Manager") {
+                manager newSales(title, name, salesPersonID, bossID);
+                Manager.push_back(newSales);
+>>>>>>> 737188fc369344b6d15dd684061e0ad14f7a7623
             }
         }
         SFile.close();
@@ -120,10 +144,12 @@ int main() {
             istringstream iss(tempString1);
             string token;
             getline(iss, token, ':');
+            int salesID = stoi(token);
+            getline(iss, token, ':');
             int customerID = stoi(token);
             getline(iss, token, ':');
             int transactionID = stoi(token);
-            Transactions newTransaction(customerID, transactionID);
+            Transactions newTransaction(salesID,customerID, transactionID);
             transactionList.push_back(newTransaction);
         }
         TFile.close();
@@ -172,7 +198,8 @@ int main() {
         cout << "4. Get Customer Transaction History" << endl;
         cout << "5. Add Order" << endl;
         cout << "6. Update Order Information" << endl;
-        cout << "7. Exit" << endl;
+        cout << "7. Employee Sales Record" << endl;
+        cout << "8. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -199,16 +226,70 @@ int main() {
                 updateOrder(orderList);
                 break;
             case 7:
+                getSalesRecord(transactionList, salesPerson, SuperSales, Supervisor, Manager, orderList);
+
+            case 8:
                 cout << "Exiting program. Goodbye!" << endl;
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != 7);
+    } while (choice != 8);
 
     return 0;
 }
 
+// Function to read sales record for all employers at the company
+void getSalesRecord(vector<Transactions>& transactionList, vector<salesperson>& salesPerson, vector<superSales>& SuperSales, vector<supervisor>& Supervisor, vector<manager>& Manager,vector<orders>& orderList){
+
+    // Distribute proper commissions bases on transactions list
+    for(int i=0;i<transactionList.size();i++){ // run through transactions list
+        for(int j=0; j< Supervisor.size();j++){
+            // If sales ID is a supervisor, assign commissions to them
+            if(transactionList[i].getSalesId() == Supervisor[j].getEID()){
+                for(int k=0; k < orderList.size();k++){
+                    if(orderList[k].getOrderID() == transactionList[i].getOrderId()){
+                        Supervisor[j].addSales(orderList[k].getPrice());
+                    }
+                }
+            }
+
+            // If sales ID is a salesperson, assign commissions to them
+            if(transactionList[i].getSalesId() == salesPerson[j].getEID()){
+                for(int k=0; k < orderList.size();k++){
+                    if(orderList[k].getOrderID() == transactionList[i].getOrderId()){
+                        salesPerson[j].addSales(orderList[k].getPrice());
+                    }
+                }
+            }
+
+            // If sales ID is a super sale, assign commissions to them
+            if(transactionList[i].getSalesId() == SuperSales[j].getEID()){
+                for(int k=0; k < orderList.size();k++){
+                    if(orderList[k].getOrderID() == transactionList[i].getOrderId()){
+                        SuperSales[j].addSales(orderList[k].getPrice());
+                    }
+                }
+            }
+
+            // If sales ID is a manager, assign commissions to them
+            if(transactionList[i].getSalesId() == Manager[j].getEID()){
+                for(int k=0; k < orderList.size();k++){
+                    if(orderList[k].getOrderID() == transactionList[i].getOrderId()){
+                        Manager[j].addSales(orderList[k].getPrice());
+                    }
+                }
+            }
+        }
+    }
+    // =========== CURRENTLY GETTING WRONG  TOTAL PROFITS =============
+
+    // Test print profits
+    for(int i=0; i<salesPerson.size();i++){
+        cout << salesPerson[i].getName() << salesPerson[i].getTotalProfit() << endl;
+    }
+
+}
 // Function to read transaction history
 void readTransactionHistory(const vector<Transactions>& transactionList) {
     for (const Transactions& t : transactionList) {
@@ -386,6 +467,16 @@ void searchForCustomer(const vector<customer>& customers, const vector<Transacti
     }
 }
 
+// Function to read all contents of salesperson vector
+void readSalesperson(vector<salesperson>& salespersons){
+    cout << "\n=======Sales People=======" << endl;
+    for(int i=0;i<salespersons.size();i++){
+        string name;
+        name = salespersons[i].getName();
+        cout << name << endl;
+    }
+}
+
 // Function to add a new customer to the vector
 void addCustomer(vector<customer>& customers) {
     string fname, lname, addy, city, state, zip;
@@ -412,7 +503,7 @@ void addCustomer(vector<customer>& customers) {
 
 // Function to add a new order to the order list
 void addOrder(vector<orders>& orderList, vector<Transactions>& transactionList, const vector<customer>& customers) {
-    int customerID, transactionID, quantity;
+    int customerID, transactionID, quantity, salesID;
     double price;
     string orderDate;
 
@@ -440,11 +531,13 @@ void addOrder(vector<orders>& orderList, vector<Transactions>& transactionList, 
     cin >> price;
     cout << "Enter order date: ";
     cin >> orderDate;
+    cout << "Enter sales ID: ";
+    cin >> salesID;
 
     orders newOrder(customerID, transactionID, quantity, price, orderDate);
     orderList.push_back(newOrder);
 
-    Transactions newTransaction(customerID, transactionID);
+    Transactions newTransaction(salesID, customerID, transactionID);
     transactionList.push_back(newTransaction);
 
     cout << "Order added successfully!" << endl;
